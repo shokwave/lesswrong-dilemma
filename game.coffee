@@ -20,10 +20,13 @@ class root.Game
     @player_two.results.push p2v
     @turn++
 
-  results: =>
+  results: ->
     one = @player_one.results.reduce (t, s) -> t + s
     two = @player_two.results.reduce (t, s) -> t + s
-    return [one, two]
+    one_name = "#{@player_one.name}"
+    two_name = "#{@player_two.name}"
+    obj = [[one_name, one], [two_name, two]]
+    return obj
 
   value: (p1m, p2m) =>
     switch p1m
