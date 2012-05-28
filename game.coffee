@@ -1,22 +1,29 @@
-class Game
+root = exports ? window
+
+
+class root.Game
 
   constructor: (@length = 100, @payoffs, @player_one, @player_two) ->
     @history = {}
     @turn = 0
 
   record: (one_move, two_move) =>
-    @history[@turn] = {@player_one.name: one_move, @player_two.name: two_move}
+    [p1name, p2name] = [@player_one.name, @player_two.name]
+    @history[@turn] = {p1name: one_move, p2name: two_move}
 
   tick: =>
-    p1m, p2m = @player_one.move(info), @player_two.move(info)
-    record p1m, p2m
-    p1v, p2v = value p1m, p2m
+    info = 1
+    [p1m, p2m] = [@player_one.move(info), @player_two.move(info)]
+    @record p1m, p2m
+    [p1v, p2v] = @value p1m, p2m
     @player_one.results.push p1v
     @player_two.results.push p2v
     @turn++
 
   results: =>
-    return [@player_one.results.reduce (t, s) -> t + s, @player_two.results.reduce (t, s) -> t + s]
+    one = @player_one.results.reduce (t, s) -> t + s
+    two = @player_two.results.reduce (t, s) -> t + s
+    return [one, two]
 
   value: (p1m, p2m) =>
     switch p1m
@@ -38,13 +45,16 @@ class Game
 
   play: =>
     while @turn < @length
-      tick
-    results
+      @tick()
+    @results()
 
 
-class Payoffs
+class root.Payoffs
 
   constructor: (@d_c, @c_c, @d_d, @c_d) ->
+    # yay
+
+
 
 
   

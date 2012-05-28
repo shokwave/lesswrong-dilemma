@@ -1,12 +1,15 @@
-import game
-import bots
+g = require './game'
+b = require './bots'
 
-PAYOFF = Payoffs 5, 3, 1, 0
+PAYOFF = new g.Payoffs 5, 3, 1, 0
 
-player_one = CooperateBot
-player_two = DefectBot
+player_one = new b.CooperateBot
+player_two = new b.DefectBot
 
-game = Game PAYOFF, player_one, player_two
-console.log game.play
+tournament = new g.Game 100, PAYOFF, player_one, player_two
+console.log tournament
+
+
+console.log tournament.play()
 
 

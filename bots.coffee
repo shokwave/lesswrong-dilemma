@@ -1,4 +1,6 @@
-class Bot
+root = exports ? window
+
+class root.Bot
 
   constructor: (@name) ->
     @results = []
@@ -23,7 +25,7 @@ class Bot
     ###
 
 
-class DefectBot extends Bot
+class root.DefectBot extends root.Bot
 
   constructor: ->
     super 'DefectBot'
@@ -32,7 +34,7 @@ class DefectBot extends Bot
     'd'
 
 
-class CooperateBot extends Bot
+class root.CooperateBot extends root.Bot
 
   constructor: ->
     super 'CooperateBot'
