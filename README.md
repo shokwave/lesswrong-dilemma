@@ -1,11 +1,11 @@
 lesswrong-dilemma
 =================
 
-An Iterated Prisoner's Dilemma simulator and Tournament manager.
+An Iterated Prisoner's Dilemma simulator and Tournament manager.  
 
-TODO: 
+TODO:   
 Make a proper main.coffee.  
-	- Botlist  
+	- Population  
 	- Analytics  
-Make info a thing.  
-Make some more bots.  
+
+Make some more bots - TFT-Dn, TFT-DnC, CRD.  
