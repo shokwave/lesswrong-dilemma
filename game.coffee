@@ -45,22 +45,7 @@ class root.Game
     return [[one_name, one], [two_name, two]]
 
   value: (p1m, p2m) =>
-    switch p1m
-      when 'c'
-        switch p2m
-          when 'c'
-            return [@payoffs.c_c, @payoffs.c_c]
-          when 'd'
-            return [@payoffs.c_d, @payoffs.d_c]
-          else null
-      when 'd'
-        switch p2m
-          when 'c'
-            return [@payoffs.d_c, @payoffs.c_d]
-          when 'd'
-            return [@payoffs.d_d, @payoffs.d_d]
-          else null
-      else null
+    @payoffs[p1m][p2m]
 
   play: =>
     while @turn <= @length
@@ -69,7 +54,9 @@ class root.Game
 
 
 class root.Payoffs
-  constructor: (@d_c, @c_c, @d_d, @c_d) ->
+  constructor: (d_c, c_c, d_d, c_d) ->
+    @c: {'c': c_c, 'd': c_d}
+    @d: {'c': d_c, 'd': d_d}
 
 
 class root.Info
