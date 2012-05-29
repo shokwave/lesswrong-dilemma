@@ -11,8 +11,6 @@ LENGTH = 100
 
 
 
-
-
 ###
     set your payoff structure here.
 ###
@@ -33,6 +31,8 @@ PAYOFF = new g.Payoffs 5, 3, 1, 0
 ###
     the round robin tournament
 ###
+
+
 if round_robin
   botlist = [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot]
   records = []
@@ -54,7 +54,7 @@ if round_robin
     for contestant in record
       dict[contestant[0]] += contestant[1]
 
-  console.log dict
+  
 
 
 

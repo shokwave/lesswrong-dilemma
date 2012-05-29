@@ -32,9 +32,8 @@ class root.Game
   tick: =>
     [p1m, p2m] = [@player_one.move(@info 1), @player_two.move(@info 2)]
     @record p1m, p2m
-    [p1v, p2v] = @value p1m, p2m
-    @player_one_results.push p1v
-    @player_two_results.push p2v
+    @player_one_results.push @value(p1m, p2m)
+    @player_two_results.push @value(p2m, p1m)
     @turn++
 
   results: ->
@@ -55,8 +54,8 @@ class root.Game
 
 class root.Payoffs
   constructor: (d_c, c_c, d_d, c_d) ->
-    @c: {'c': c_c, 'd': c_d}
-    @d: {'c': d_c, 'd': d_d}
+    @c = {'c': c_c, 'd': c_d}
+    @d = {'c': d_c, 'd': d_d}
 
 
 class root.Info
