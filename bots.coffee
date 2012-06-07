@@ -2,7 +2,7 @@ root = exports ? window
 
 class root.Bot
 
-  constructor: (@name) ->
+  constructor: ( {@name: 'bot', @m: 0} ) ->
 
   move: (info) =>
     ###
@@ -31,7 +31,7 @@ class root.Bot
 class root.DefectBot extends root.Bot
 
   constructor: ->
-    super 'DefectBot'
+    super {name: 'DefectBot'}
 
   move: (info) =>
     'd'
@@ -39,26 +39,25 @@ class root.DefectBot extends root.Bot
 
 class root.CooperateBot extends root.Bot
 
-  constructor: ->
-    super 'CooperateBot'
+  constructor:  ->
+    super {name: 'CooperateBot'}
   
   move: (info) =>
     'c'
 
 class root.TitForTat extends root.Bot
 
-  constructor: ->
-    super 'TitForTat'
+  constructor:  ->
+    super {name: 'TitForTat'}
 
   move: (info) =>
-    
     if info.turn == 1 then 'c' else info.last_turn[1] 
 
 
 class root.Random extends root.Bot
 
-  constructor: ->
-    super 'Random'
+  constructor:  ->
+    super {name: 'Random'}
 
   move: (info) =>
     if Math.random() > 0.5 then 'c' else 'd'
@@ -66,9 +65,9 @@ class root.Random extends root.Bot
 
 class root.GrimTrigger extends root.Bot
 
-  constructor: ->
+  constructor:  ->
     @trigger = false
-    super 'GrimTrigger'
+    super {name: 'GrimTrigger'}
   
   move: (info) =>
     if info.last_turn[1] == 'd' then @trigger = true
@@ -77,7 +76,7 @@ class root.GrimTrigger extends root.Bot
 class root.TitForTatDefectLastN extends root.Bot
 
   constructor: (@n = 5) ->
-    super "TFT-Dn"
+    super {name: "TFT-D#{@n}"}
 
   move: (info) =>
     if info.turn == 1
@@ -91,7 +90,7 @@ class root.TitForTatDefectLastN extends root.Bot
 class root.Afterparty extends root.Bot
 # Play TitForTat, defect at n, if the opponent defected at n as well, then the opponent is also an Afterparty bot, and we should cooperate. Otherwise, the bot is an enemy, and we will defect.
   constructor: (@n = 10) ->
-    super "Afterparty"
+    super {name: "Afterparty"}
     @clone = false
 
   move: (info) =>
