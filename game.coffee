@@ -43,8 +43,8 @@ class root.Game
     two_name = "#{@player_two.name}"
     return [[one_name, one], [two_name, two]]
 
-  value: (p1m, p2m) =>
-    @payoffs[p1m][p2m]
+  value: (my_move, others_move) =>
+    @payoffs[my_move][others_move]
 
   play: =>
     while @turn <= @length

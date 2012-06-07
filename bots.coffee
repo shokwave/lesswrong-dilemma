@@ -74,4 +74,41 @@ class root.GrimTrigger extends root.Bot
     if info.last_turn[1] == 'd' then @trigger = true
     if @trigger then 'd' else 'c'
 
-  
+class root.TitForTatDefectLastN extends root.Bot
+
+  constructor: (@n = 5) ->
+    super "TFT-Dn"
+
+  move: (info) =>
+    if info.turn == 1
+      'c'
+    else
+      if info.game_length - info.turn <= @n
+        'd'
+      else
+        info.last_turn[1]
+
+class root.Afterparty extends root.Bot
+
+  constructor: (@n = 5) ->
+    super "Afterparty"
+    @clone = false
+
+  move: (info) =>
+    if @clone
+      'c'
+    else
+      if (info.game_length - info.turn) == @n
+        'd'
+      else
+        if (info.game_length - (info.turn - 1)) == @n
+          if info.last_turn[1] == 'd'
+            @clone == true
+            'c'
+          else
+            if info.turn == 1
+              'c'
+            else 
+              info.last_turn[1]
+
+

@@ -32,14 +32,20 @@ PAYOFF = new g.Payoffs 5, 3, 1, 0
     the round robin tournament
 ###
 
+# console.log PAYOFF['c']['d']
+# console.log "outside"
 
 if round_robin
-  botlist = [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot]
+  botlist = [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot, b.TitForTatDefectLastN, b.Afterparty]
   records = []
+  # console.log PAYOFF['c']['d']
+  # console.log "in round_robin"
   for bot_one in botlist
     for bot_two in botlist
       player_one = new bot_one
       player_two = new bot_two
+      # console.log PAYOFF['c']['d']
+      # console.log "in bot_two"
       tournament = new g.Game LENGTH, PAYOFF, player_one, player_two
       records.push tournament.play()
 
@@ -49,11 +55,14 @@ if round_robin
     'GrimTrigger': 0
     'DefectBot': 0
     'CooperateBot': 0
+    'TFT-Dn': 0
+    'Afterparty': 0
 
   for record in records
     for contestant in record
       dict[contestant[0]] += contestant[1]
 
+console.log dict
   
 
 
