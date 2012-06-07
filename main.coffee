@@ -1,5 +1,6 @@
-g = require './game'
 b = require './bots'
+g = require './game'
+
 
 
 ###

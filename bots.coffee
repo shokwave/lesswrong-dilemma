@@ -89,26 +89,28 @@ class root.TitForTatDefectLastN extends root.Bot
         info.last_turn[1]
 
 class root.Afterparty extends root.Bot
-
-  constructor: (@n = 5) ->
+# Play TitForTat, defect at n, if the opponent defected at n as well, then the opponent is also an Afterparty bot, and we should cooperate. Otherwise, the bot is an enemy, and we will defect.
+  constructor: (@n = 10) ->
     super "Afterparty"
     @clone = false
 
   move: (info) =>
-    if @clone
+    if @clone == 'yes'
       'c'
-    else
-      if (info.game_length - info.turn) == @n
-        'd'
+    else if @clone == 'no'
+      'd'
+    else if (info.game_length - info.turn) == @n
+      'd'
+    else if (info.game_length - (info.turn - 1)) == @n
+      if info.last_turn[1] == 'd'
+        @clone = 'yes'
+        'c'
       else
-        if (info.game_length - (info.turn - 1)) == @n
-          if info.last_turn[1] == 'd'
-            @clone == true
-            'c'
-          else
-            if info.turn == 1
-              'c'
-            else 
-              info.last_turn[1]
+        @clone = 'no'
+        'd'
+    else if info.turn == 1
+      'c'
+    else 
+      info.last_turn[1]
 
 
