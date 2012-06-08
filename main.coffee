@@ -1,69 +1,79 @@
+fs = require 'fs'
 b = require './bots'
 g = require './game'
-
-
+m = require './manager'
 
 ###
-    options:
+    The list of bots that will compete.
+###
+botlist = [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot, b.TitForTatDefectLastN, b.Afterparty]
+
+###
+    Game type:
 ###
 round_robin = true
 natural_selection = false
-LENGTH = 100
-
-
+evolution = false
 
 ###
-    set your payoff structure here.
+    Options:
 ###
-PAYOFF = new g.Payoffs 5, 3, 1, 0
-###
-    you need to provide:
-      the value of defecting against a cooperator
-      the value of cooperating with a cooperator
-      the value of defecting against a defector
-      the value of cooperating against a defector.
-    also note that `new Payoffs(a, b, c, d)` should satisfy:
-      a > b > c > d
-      b * 2 > a + d  
-    otherwise, the interesting things that are true about the iterated prisoner's dilemma aren't true of tournaments using this structure.
-###
-
+variable_length = false
+message_corruption = false
+game_length = 100
 
 ###
-    the round robin tournament
+    Logging
 ###
+class Writer
 
-# console.log PAYOFF['c']['d']
-# console.log "outside"
+  constructor: ->
+    
+    @pen = fs.createWriteStream("ipd-logfile-#{ Math.random().toString()[2..10] }", {'a'})
+    @first_write = true
+
+  rr_log: (d) =>
+    stri = ""
+    for matchup, blob of d
+      stri += "#{matchup}\n"
+      for player, score of blob
+        stri += "#{player}: #{score}\n"
+    @pen.write stri
+
+
+  ns_log: (d) =>
+    if @first_write
+      keyz = ""
+      valz = ""
+      for ky, vl of d
+        keyz += "#{ky},"
+        valz += "#{vl},"
+      keyz += "\n" + valz + "\n"
+      @pen.write keyz
+      @first_write = false
+    else
+      valz = ""
+      for ky, vl of d
+        valz += ",#{vl}"
+      valz += "\n"
+      @pen.write valz
+
 
 if round_robin
-  botlist = [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot, b.TitForTatDefectLastN, b.Afterparty]
-  records = []
-  # console.log PAYOFF['c']['d']
-  # console.log "in round_robin"
-  for bot_one in botlist
-    for bot_two in botlist
-      player_one = new bot_one
-      player_two = new bot_two
-      # console.log PAYOFF['c']['d']
-      # console.log "in bot_two"
-      tournament = new g.Game LENGTH, PAYOFF, player_one, player_two
-      records.push tournament.play()
+  m.round_robin(botlist, (new Writer), game_length)
 
-  dict = 
-    'TitForTat': 0
-    'Random': 0
-    'GrimTrigger': 0
-    'DefectBot': 0
-    'CooperateBot': 0
-    'TFT-Dn': 0
-    'Afterparty': 0
+if natural_selection
+  m.natural_selection(botlist, (new Writer), game_length)
 
-  for record in records
-    for contestant in record
-      dict[contestant[0]] += contestant[1]
+if variable_length
+  false
 
-console.log dict
+if evolution
+  false
+
+if message_corruption
+  false
+
   
 
 

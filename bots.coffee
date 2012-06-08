@@ -2,12 +2,18 @@ root = exports ? window
 
 class root.Bot
 
-  constructor: ( {@name: 'bot', @m: 0} ) ->
+  constructor: ({@name, @m}) ->
+    @name ?= 'Bot'
+    @m ?= 0
 
   move: (info) =>
     ###
 
-    'c' for cooperate, 'd' for defect.
+    Use `super {name: 'Your-Name-Bot'}` to name your bot.
+
+    your bot should have a custom move method, taking the info argument.
+
+    move should return 'c' for cooperate, 'd' for defect.
 
     info is an object with some useful info for your bot.
     info.last_turn gives you an array of your move, their move
@@ -22,9 +28,7 @@ class root.Bot
     e.g. [51, 30]. it is undefined if this is the first turn.
     info.payoffs gives you an array of arrays of the payoff structure
     e.g. [ ['d_c', 5], ['c_c', 3], ['d_d', 1], ['c_d', 0] ]
-
-    your bot should shadow the move method, taking the info argument.
-
+    
     ###
 
 
@@ -76,7 +80,7 @@ class root.GrimTrigger extends root.Bot
 class root.TitForTatDefectLastN extends root.Bot
 
   constructor: (@n = 5) ->
-    super {name: "TFT-D#{@n}"}
+    super {name: "TitForTatDefectLastN"}
 
   move: (info) =>
     if info.turn == 1
