@@ -8,6 +8,7 @@ class root.Game
     @player_two_results = 0
     @history = {}
     @turn = 1
+    @info = {}
 
   record: (one_move, two_move) =>
     @history[@turn] = [[@player_one.name, one_move], [@player_two.name, two_move]]
@@ -15,18 +16,19 @@ class root.Game
 
   info: (player) =>
     if @turn == 1
-      new root.Info [], @turn, @length, [], ([key, value] for key, value of @payoffs)
+      @info = new root.Info [], @turn, @length, []
     else
-      turn = @turn
-      last_turn = [@history[(@turn - 1)][0][1], @history[(@turn - 1)][1][1]]
-      game_length = @length
-      current_scores = [@player_one_results, @player_two_results]
+      @info.turn = @turn
+      @info.last_turn = [@history[(@turn - 1)][0][1], @history[(@turn - 1)][1][1]]
+      @info.game_length = @length
+      @info.current_scores = [@player_one_results, @player_two_results]
       switch player
         when 1
-          return new root.Info last_turn, turn, game_length, current_scores
+          @info
         when 2
-          return new root.Info last_turn.reverse(), turn, game_length, current_scores.reverse()
-
+          @info.last_turn.reverse()
+          @info.current_scores.reverse()
+          @info
 
   tick: =>
     [p1m, p2m] = [@player_one.move(@info 1), @player_two.move(@info 2)]
