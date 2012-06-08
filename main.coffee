@@ -1,3 +1,5 @@
+require('nodetime').profile({stdout: true})
+
 fs = require 'fs'
 b = require './bots'
 g = require './game'

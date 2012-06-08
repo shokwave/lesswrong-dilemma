@@ -1,3 +1,5 @@
+require('nodetime').profile({stdout: true})
+
 root = exports ? window
 
 g = require './game'
@@ -47,8 +49,8 @@ root.natural_selection = (botlist, writer, game_length) ->
   ###
       Options.
   ###
-  generations = 1000
-  population = 4000
+  generations = 100
+  population = 400
 
   # initialise the lookup dict
   lookup = {}
@@ -72,7 +74,6 @@ root.natural_selection = (botlist, writer, game_length) ->
   
   # now iterate!
   while generations > 0
-
     # shuffle the pool
     pool.sort( -> 0.5 - Math.random())
     
