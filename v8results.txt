@@ -1,0 +1,171 @@
+[Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 2.0% are not shown.
+
+   ticks parent  name
+  517438   28.1%  /usr/local/Cellar/node/0.6.7/bin/node
+  110119   21.3%    Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:56
+  108409   98.4%      LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  104625   96.5%        Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  104625  100.0%          LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  104625  100.0%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   3784    3.5%        Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   3784  100.0%          LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   3784  100.0%            Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  90973   17.6%    LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  87786   96.5%      Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  87786  100.0%        LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  87786  100.0%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  87786  100.0%            LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+   3187    3.5%      Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   3187  100.0%        LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   3187  100.0%          Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   3185   99.9%            LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+  82225   15.9%    Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  74179   90.2%      LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  74179  100.0%        Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  74179  100.0%          LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+  74179  100.0%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   7408    9.0%      LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+   7408  100.0%        Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   7408  100.0%          Function: root.natural_selection /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/manager.coffee:57
+   7408  100.0%            Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/main.coffee:1
+  68537   13.2%    Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  68535  100.0%      LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  66088   96.4%        Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  66088  100.0%          LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  66088  100.0%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   2447    3.6%        Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   2447  100.0%          LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   2447  100.0%            Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  65120   12.6%    Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/bots.coffee:3
+  35098   53.9%      LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  35098  100.0%        Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  35098  100.0%          LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+  35098  100.0%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  30022   46.1%      Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/bots.coffee:3
+  30022  100.0%        LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  30022  100.0%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  30022  100.0%            LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+  35572    6.9%    LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+  35438   99.6%      Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  35438  100.0%        LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  34193   96.5%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  34193  100.0%            LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   1245    3.5%          Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   1245  100.0%            LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  22542    4.4%    LazyCompile: *root.Game.Game.record /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:25
+  21749   96.5%      Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  21749  100.0%        LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  21749  100.0%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  21749  100.0%            LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+    793    3.5%      Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+    793  100.0%        LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+    793  100.0%          Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+    793  100.0%            LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+  11787    2.3%    LazyCompile: *reduce native array.js:1242
+   9255   78.5%      LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+   9161   99.0%        Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+   9161  100.0%          LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+   8818   96.3%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+    343    3.7%            Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   2528   21.4%      Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+   2528  100.0%        LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+   2451   97.0%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   2451  100.0%            LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+     77    3.0%          Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+     77  100.0%            LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+
+  356705   19.4%  LazyCompile: *reduce native array.js:1242
+  356705  100.0%    LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+  353200   99.0%      Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  353196  100.0%        LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  340278   96.3%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  340278  100.0%            LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  12918    3.7%          Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  12918  100.0%            LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+
+  309045   16.8%  Builtin: A builtin from the snapshot
+  263948   85.4%    LazyCompile: *reduce native array.js:1242
+  263948  100.0%      LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+  261394   99.0%        Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  261393  100.0%          LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  251799   96.3%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   9594    3.7%            Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  30593    9.9%    LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+  30329   99.1%      Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  30329  100.0%        LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  29226   96.4%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  29226  100.0%            LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   1103    3.6%          Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   1103  100.0%            LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   7941    2.6%    LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   7625   96.0%      Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   7625  100.0%        LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+   7625  100.0%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   7625  100.0%            Function: root.natural_selection /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/manager.coffee:57
+    316    4.0%      Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+    316  100.0%        LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+    316  100.0%          Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+    258   81.6%            Function: root.natural_selection /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/manager.coffee:57
+     58   18.4%            Function: ~root.natural_selection /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/manager.coffee:57
+
+  59052    3.2%  Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:86
+  59047  100.0%    LazyCompile: *reduce native array.js:1242
+  59047  100.0%      LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+  58490   99.1%        Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  58490  100.0%          LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  56337   96.3%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   2153    3.7%            Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+
+  56886    3.1%  LazyCompile: APPLY_PREPARE native runtime.js:449
+  30796   54.1%    Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  25572   83.0%      LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  25572  100.0%        Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  25572  100.0%          LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+  25572  100.0%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   5142   16.7%      LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+   5142  100.0%        Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   5142  100.0%          Function: root.natural_selection /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/manager.coffee:57
+   5142  100.0%            Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/main.coffee:1
+  22992   40.4%    Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/bots.coffee:3
+  13627   59.3%      LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  13627  100.0%        Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  13627  100.0%          LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+  13627  100.0%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   9365   40.7%      Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/bots.coffee:3
+   9365  100.0%        LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   9365  100.0%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   9365  100.0%            LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+
+  55554    3.0%  Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:89
+  55554  100.0%    LazyCompile: *reduce native array.js:1242
+  55554  100.0%      LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+  55003   99.0%        Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  55003  100.0%          LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  53089   96.5%            Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   1914    3.5%            Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+
+  48384    2.6%  Stub: BinaryOpStub
+  24561   50.8%    Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:86
+  24561  100.0%      LazyCompile: *reduce native array.js:1242
+  24561  100.0%        LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+  24306   99.0%          Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  24306  100.0%            LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  23820   49.2%    Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:89
+  23820  100.0%      LazyCompile: *reduce native array.js:1242
+  23820  100.0%        LazyCompile: *root.Game.Game.results /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:84
+  23591   99.0%          Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:46
+  23591  100.0%            LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+
+  40500    2.2%  Function: ~<anonymous> /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:56
+  39876   98.5%    LazyCompile: *root.Game.Game.info /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:29
+  38411   96.3%      Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  38411  100.0%        LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+  38411  100.0%          Function: __bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+  38411  100.0%            LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101
+   1465    3.7%      Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   1465  100.0%        LazyCompile: *root.Game.Game.tick /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:75
+   1465  100.0%          Function: ~__bind /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:3
+   1464   99.9%            LazyCompile: *root.Game.Game.play /Users/scottfowler/dev/coffeescript/ipd/lesswrong-dilemma/game.coffee:101

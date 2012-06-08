@@ -26,9 +26,6 @@ class root.Bot
     note that the game ends after the turn counter hits this number, so that info.turn == 100 means the last turn in this case. 
     info.current_scores gives you an array of your score, their score
     e.g. [51, 30]. it is undefined if this is the first turn.
-    info.payoffs gives you an array of arrays of the payoff structure
-    e.g. [ ['d_c', 5], ['c_c', 3], ['d_d', 1], ['c_d', 0] ]
-    
     ###
 
 

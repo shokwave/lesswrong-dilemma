@@ -11,8 +11,8 @@ botlist = [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot, b.
 ###
     Game type:
 ###
-round_robin = true
-natural_selection = false
+round_robin = false
+natural_selection = true
 evolution = false
 
 ###

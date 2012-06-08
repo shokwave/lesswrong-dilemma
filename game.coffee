@@ -4,8 +4,8 @@ root = exports ? window
 class root.Game
 
   constructor: (@length, @payoffs, @player_one, @player_two) ->
-    @player_one_results = []
-    @player_two_results = []
+    @player_one_results = 0
+    @player_two_results = 0
     @history = {}
     @turn = 1
 
@@ -20,25 +20,24 @@ class root.Game
       turn = @turn
       last_turn = [@history[(@turn - 1)][0][1], @history[(@turn - 1)][1][1]]
       game_length = @length
-      current_scores = (arr[1] for arr in @results())
-      payoffs = ([key, value] for key, value of @payoffs)
+      current_scores = [@player_one_results, @player_two_results]
       switch player
         when 1
-          return new root.Info last_turn, turn, game_length, current_scores, payoffs
+          return new root.Info last_turn, turn, game_length, current_scores
         when 2
-          return new root.Info last_turn.reverse(), turn, game_length, current_scores.reverse(), payoffs
+          return new root.Info last_turn.reverse(), turn, game_length, current_scores.reverse()
 
 
   tick: =>
     [p1m, p2m] = [@player_one.move(@info 1), @player_two.move(@info 2)]
     @record p1m, p2m
-    @player_one_results.push @value(p1m, p2m)
-    @player_two_results.push @value(p2m, p1m)
+    @player_one_results += @value(p1m, p2m)
+    @player_two_results += @value(p2m, p1m)
     @turn++
 
   results: ->
-    one = @player_one_results.reduce (t, s) -> t + s
-    two = @player_two_results.reduce (t, s) -> t + s
+    one = @player_one_results
+    two = @player_two_results
     one_name = "#{@player_one.name}"
     two_name = "#{@player_two.name}"
     return [[one_name, one], [two_name, two]]
@@ -59,7 +58,7 @@ class root.Payoffs
 
 
 class root.Info
-  constructor: (@last_turn, @turn, @game_length, @current_scores, @payoffs) ->
+  constructor: (@last_turn, @turn, @game_length, @current_scores) ->
 
 
 

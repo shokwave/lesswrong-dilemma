@@ -48,7 +48,7 @@ root.natural_selection = (botlist, writer, game_length) ->
       Options.
   ###
   generations = 1000
-  population = 1000
+  population = 4000
 
   # initialise the lookup dict
   lookup = {}
