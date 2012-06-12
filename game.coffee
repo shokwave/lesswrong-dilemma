@@ -8,6 +8,9 @@ class root.Game
     @player_two_results = 0
     @history = []
     @turn = 1
+    @message_corruption = 0.01
+    @corrupt = {'d': 'c', 'c': 'd'}
+    @information_corruption = 0.01
     @gameinfo = {}
 
   info: (player) =>
@@ -26,9 +29,12 @@ class root.Game
           @gameinfo.current_scores.reverse()
           @gameinfo
 
+  maybe_corrupt: (move, factor) =>
+    if (Math.random() > factor) then corrupt[move] else move
+
   tick: =>
-    [p1m, p2m] = [@player_one.move(@info 1), @player_two.move(@info 2)]
-    @history = [p1m, p2m]
+    [p1m, p2m] = [maybe_corrupt(@player_one.move(@info 1), @message_corruption), maybe_corrupt(@player_two.move(@info 2), @message_corruption)]
+    @history = [maybe_corrupt(p1m, @information_corruption), maybe_corrupt(p2m, @information_corruption)]
     @player_one_results += @payoffs[p1m][p2m]
     @player_two_results += @payoffs[p2m][p1m]
     @turn++

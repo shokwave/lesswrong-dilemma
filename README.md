@@ -1,6 +1,9 @@
 lesswrong-dilemma
 =================
 
+Message Corruption Branch
+=========================
+
 An Iterated Prisoner's Dilemma simulator and Tournament manager.    
 
 The payoff strucutre is handled by PAYOFF: an object in manager.coffee    
