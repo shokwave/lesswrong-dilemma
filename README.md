@@ -17,6 +17,7 @@ Writing your bot
 
 Instructions in `bots.coffee` reproduced here.    
 
+`
 Use `super {name: 'Your-Name-Bot'}` to name your bot.  
 
 your bot should have a custom move method, taking the info argument.  
@@ -36,3 +37,4 @@ info.current_scores gives you an array of your score, their score
 e.g. [51, 30]. it is undefined if this is the first turn.  
 info.payoffs gives you an array of arrays of the payoff structure  
 e.g. [ ['d_c', 5], ['c_c', 3], ['d_d', 1], ['c_d', 0] ]  
+`
