@@ -1,8 +1,18 @@
-lesswrong-dilemma
-=================
-
 Message Corruption Branch
 =========================
+
+Simulates a noisy environment where sometimes a defect is a cooperate, and vice-versa.
+
+Also does limited-information environments, where sometimes a defect looks like a cooperate and vice-versa to the other player, but it actually isn't.
+
+Strongly predict that tit-for-tat will be even more successful here: even CRD will reliably fail.
+
+
+
+README.md follows:
+
+lesswrong-dilemma
+=================
 
 An Iterated Prisoner's Dilemma simulator and Tournament manager.    
 
