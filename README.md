@@ -1,3 +1,12 @@
+Variable Length
+===============
+
+Distributions: exponential from N onwards - standard distribution N as mean, s as sigma - 
+
+
+
+original readme follows:
+
 lesswrong-dilemma
 =================
 

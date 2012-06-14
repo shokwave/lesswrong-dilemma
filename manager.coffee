@@ -1,5 +1,3 @@
-require('nodetime').profile({stdout: true})
-
 root = exports ? window
 
 g = require './game'
@@ -33,6 +31,7 @@ root.round_robin = (botlist, writer, game_length) ->
       player_two = new bot_two
       matchup = "#{player_one.name} vs #{player_two.name}"
       records[matchup] = {}
+variablise(game_length)
       tournament = new g.Game game_length, PAYOFF, player_one, player_two
       [[p1, p1score], [p2, p2score]] = tournament.play()
       p1 = "P1-#{p1}"
@@ -82,6 +81,7 @@ root.natural_selection = (botlist, writer, game_length) ->
     while pool.length >= 2
       player_one = pool.pop()
       player_two = pool.pop()
+variablise(game_length)
       tournament = new g.Game game_length, PAYOFF, player_one, player_two
       records.push tournament.play()
 
@@ -118,7 +118,7 @@ root.natural_selection = (botlist, writer, game_length) ->
 
 
 
-
+class vary 
 
 
 
