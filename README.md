@@ -1,18 +1,10 @@
-Message Corruption Branch
-=========================
-
-Simulates a noisy environment where sometimes a defect is a cooperate, and vice-versa.
-
-Also does limited-information environments, where sometimes a defect looks like a cooperate and vice-versa to the other player, but it actually isn't.
-
-Strongly predict that tit-for-tat will be even more successful here: even CRD will reliably fail.
-
-
-
-README.md follows:
-
 lesswrong-dilemma
 =================
+
+TODOS:  
+* Combine all options into a big hash and pass that around instead.  
+* Fisher-Yates instead of ` -> Math.random() - 0.5  
+* Evolution      
 
 An Iterated Prisoner's Dilemma simulator and Tournament manager.    
 
@@ -30,7 +22,7 @@ Writing your bot
 
 Instructions in `bots.coffee` reproduced here.    
 
-`
+
 Use `super {name: 'Your-Name-Bot'}` to name your bot.  
 
 your bot should have a custom move method, taking the info argument.  
