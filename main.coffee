@@ -50,8 +50,8 @@ class Writer
       for ky, vl of d
         keyz += "#{ky},"
         valz += "#{vl},"
-      keyz += "\n" + valz + "\n"
-      @pen.write keyz
+      blobz = keyz[0..(keyz.length - 2)] + "\n" + valz[0..(valz.length - 2)] + "\n"
+      @pen.write blobz
       @first_write = false
     else
       valz = ""
