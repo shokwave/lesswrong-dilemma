@@ -3,14 +3,12 @@ root = exports ? window
 
 class root.Game
 
-  constructor: (@length, @payoffs, @player_one, @player_two) ->
+  constructor: (@length, @payoffs, @player_one, @player_two, @message_corruption, @information_corruption) ->
     @player_one_results = 0
     @player_two_results = 0
     @history = []
     @turn = 1
-    @message_corruption = 0.01
     @corrupt = {'d': 'c', 'c': 'd'}
-    @information_corruption = 0.01
     @gameinfo = {}
 
   info: (player) =>
@@ -23,11 +21,11 @@ class root.Game
       @gameinfo.current_scores = [@player_one_results, @player_two_results]
       switch player
         when 1
-          @gameinfo
+          return @gameinfo
         when 2
           @gameinfo.last_turn.reverse()
           @gameinfo.current_scores.reverse()
-          @gameinfo
+          return @gameinfo
 
   maybe_corrupt: (move, factor) =>
     if (Math.random() > factor) then @corrupt[move] else move
@@ -39,7 +37,7 @@ class root.Game
     @player_two_results += @payoffs[p2m][p1m]
     @turn++
 
-  results: ->
+  results: =>
     one = @player_one_results
     two = @player_two_results
     one_name = "#{@player_one.name}"

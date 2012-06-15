@@ -2,31 +2,16 @@ root = exports ? window
 
 g = require './game'
 
-###
-    set your payoff structure here.
-###
-PAYOFF = new g.Payoffs 5, 3, 1, 0
-###
-    you need to provide:
-      the value of defecting against a cooperator
-      the value of cooperating with a cooperator
-      the value of defecting against a defector
-      the value of cooperating against a defector.
-    also note that `new Payoffs(a, b, c, d)` should satisfy:
-      a > b > c > d
-      b * 2 > a + d  
-    otherwise, the interesting things that are true about the iterated prisoner's dilemma aren't true of tournaments using this structure.
-    5, 3, 1, 0 is the classic Prisoner's Dilemma structure.
-###
-
-###
-    the round robin tournament
-###
+shuffle = (arr) ->
+  # Fisher Yates Knuth Durstenfeld, by your powers combined
+  i = arr.length
+  while --i
+    j = Math.floor(Math.random() * (i+1))
+    [arr[i], arr[j]] = [arr[j], arr[i]]
+  return arr
 
 
-root.round_robin = (botlist, writer, game_length) ->
-  variable_length_type = 'small uniform'
-# options: small uniform, big uniform, exponential
+root.round_robin = (botlist, writer, game_length, payoff, variablise) ->
   records = {}
   for bot_one in botlist
     for bot_two in botlist
@@ -34,8 +19,7 @@ root.round_robin = (botlist, writer, game_length) ->
       player_two = new bot_two
       matchup = "#{player_one.name} vs #{player_two.name}"
       records[matchup] = {}
-      variablise(game_length, type: variable_length_type) if variable_length_type
-      tournament = new g.Game game_length, PAYOFF, player_one, player_two
+      tournament = new g.Game variablise(game_length), payoff, player_one, player_two, message_corruption, information_corruption
       [[p1, p1score], [p2, p2score]] = tournament.play()
       p1 = "P1-#{p1}"
       p2 = "P2-#{p2}"
@@ -43,29 +27,16 @@ root.round_robin = (botlist, writer, game_length) ->
       records[matchup][p2] = p2score
   writer.rr_log records
 
-###
-    the natural selection tournament
-###
 
-root.natural_selection = (botlist, writer, game_length) ->
-  variable_length_type = 'small uniform'
-# options: small uniform, big uniform, exponential
-  ###
-      Options.
-  ###
-  generations = 100
-  population = 400
-
+root.natural_selection = (botlist, writer, game_length, payoff, variablise, generations, population) ->
   # initialise the lookup dict
   lookup = {}
   for bot in botlist
     lookup[bot.name] = bot
-
   # initialise the scoring dict
   dict = {}
   for bot in botlist
     dict[bot.name] = 0
-  
   # initialise the pool
   pool = []
   # get the number of individuals
@@ -75,22 +46,17 @@ root.natural_selection = (botlist, writer, game_length) ->
   for bot in botlist
     for n in [1..numl]
       pool.push new bot
-
-  
   # now iterate!
   while generations > 0
     # shuffle the pool
     pool = shuffle(pool)
-    
     # run this generation
     records = []
     while pool.length >= 2
       player_one = pool.pop()
       player_two = pool.pop()
-      variablise(game_length, type: variable_length_type) if variable_length_type
-      tournament = new g.Game game_length, PAYOFF, player_one, player_two
+      tournament = new g.Game variablise(game_length), payoff, player_one, player_two, message_corruption, information_corruption
       records.push tournament.play()
-
     # accumulate scores
     for result in records
       for score in result
@@ -104,61 +70,15 @@ root.natural_selection = (botlist, writer, game_length) ->
       evnum = Math.round(value /= total)
       evnum -= evnum % 2
       dict[name] = evnum
-
     # record results
     writer.ns_log dict
-
     console.log("pool not emptied!", pool) unless pool.length == 0
-
-
     # fill the pool with the new generation
     for name, value of dict
       if value > 0
         for n in [1..value]
           pool.push new lookup[name]
-    
     # clean up, go back to the top of the while loop
     for name, value of dict
       dict[name] = 0
     generations -= 1
-
-
-
-variablise = (length, typemap) ->
-  mode = typemap?.type ? 'small uniform'
-  switch mode
-    when 'small uniform'
-      Math.floor(((Math.random() * length) - (length / 2)) / 3)
-    when 'big uniform'
-      Math.floor((Math.random() * length) - (length / 2))
-    when 'exponential'
-      Math.floor((-1*(Math.log(Math.random())))*10)
-    when 'poisson'
-      console.log "unimplemented"
-      length
-    when 'cauchy'
-      console.log "unimplemented"
-      length
-    else
-      console.log "incorrect specification! assuming small uniform :P"
-      Math.floor(((Math.random() * length) - (length / 2)) / 3)
-
-shuffle = (arr) ->
-  # Fisher Yates Knuth Durstenfeld
-  i = arr.length
-  while --i
-    j = Math.floor(Math.random() * (i+1))
-    [arr[i], arr[j]] = [arr[j], arr[i]]
-  arr
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,6 +11,12 @@ m = require './manager'
 botlist = [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot, b.TitForTatDefectLastN, b.Afterparty]
 
 ###
+    set your payoff structure here.
+###
+PAYOFF = new g.Payoffs 5, 3, 1, 0
+
+
+###
     Game type:
 ###
 round_robin = false
@@ -21,8 +27,43 @@ evolution = false
     Options:
 ###
 variable_length = true
-message_corruption = false
+message_corruption_flag = false
 game_length = 50
+generations = 100
+population = 400
+message_corruption = 0.01
+information_corruption = 0.01
+
+
+if round_robin
+  m.round_robin(botlist, (new Writer), game_length, PAYOFF, variablise.uniform)
+
+if natural_selection
+  m.natural_selection(botlist, (new Writer), game_length, PAYOFF, variablise.uniform, generations, population)
+
+if evolution
+  false
+
+if message_corruption
+  false
+
+
+
+smll_uniform = (length) ->
+  Math.floor(((Math.random() * length) - (length / 2)) / 3)
+
+bg_uniform = (length) ->
+  Math.floor((Math.random() * length) - (length / 2))
+
+expontl = (length) ->
+  Math.floor((-1*(Math.log(Math.random())))*10)
+
+variablise = 
+  uniform: smll_uniform
+  big_uniform: bg_uniform
+  exponential: expontl
+
+
 
 ###
     Logging
@@ -59,22 +100,6 @@ class Writer
         valz += ",#{vl}"
       valz += "\n"
       @pen.write valz[1..valz.length]
-
-
-if round_robin
-  m.round_robin(botlist, (new Writer), game_length)
-
-if natural_selection
-  m.natural_selection(botlist, (new Writer), game_length)
-
-if evolution
-  false
-
-if message_corruption
-  false
-
-  
-
 
 
 

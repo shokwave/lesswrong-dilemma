@@ -2,7 +2,6 @@ lesswrong-dilemma
 =================
 
 TODOS:  
-* Combine all options into a big hash and pass that around instead.  
 * Evolution      
 
 An Iterated Prisoner's Dilemma simulator and Tournament manager.    
@@ -41,5 +40,16 @@ note that the game ends after the turn counter hits this number, so that info.tu
 info.current_scores gives you an array of your score, their score  
 e.g. [51, 30]. it is undefined if this is the first turn.  
 info.payoffs gives you an array of arrays of the payoff structure  
-e.g. [ ['d_c', 5], ['c_c', 3], ['d_d', 1], ['c_d', 0] ]  
-`
+e.g. [ ['d_c', 5], ['c_c', 3], ['d_d', 1], ['c_d', 0] ]    
+
+Payoff structure considerations  
+    you need to provide:  
+      the value of defecting against a cooperator  
+      the value of cooperating with a cooperator  
+      the value of defecting against a defector  
+      the value of cooperating against a defector.  
+    also note that `new Payoffs(a, b, c, d)` should satisfy:  
+      a > b > c > d  
+      b * 2 > a + d  
+    otherwise, the interesting things that are true about the iterated prisoner's dilemma aren't true of tournaments using this structure.  
+    5, 3, 1, 0 is the classic Prisoner's Dilemma structure.  
