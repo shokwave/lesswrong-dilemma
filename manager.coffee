@@ -134,10 +134,13 @@ variablise = (length, typemap) ->
       (-1*(Math.log(Math.random())))*10
     when 'poisson'
       console.log "unimplemented"
+      length
     when 'cauchy'
       console.log "unimplemented"
+      length
     else
       console.log "incorrect specification! assuming small uniform :P"
+      ((Math.random() * length) - (length / 2)) / 3
 
 
 

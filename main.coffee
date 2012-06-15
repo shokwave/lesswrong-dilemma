@@ -22,7 +22,7 @@ evolution = false
 ###
 variable_length = true
 message_corruption = false
-game_length = 100
+game_length = 50
 
 ###
     Logging
@@ -58,7 +58,7 @@ class Writer
       for ky, vl of d
         valz += ",#{vl}"
       valz += "\n"
-      @pen.write valz
+      @pen.write valz[1..valz.length]
 
 
 if round_robin
