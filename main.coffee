@@ -1,4 +1,4 @@
-require('nodetime').profile({stdout: true})
+root = exports ? window
 
 fs = require 'fs'
 b = require './bots'
@@ -20,7 +20,7 @@ evolution = false
 ###
     Options:
 ###
-variable_length = false
+variable_length = true
 message_corruption = false
 game_length = 100
 
@@ -66,9 +66,6 @@ if round_robin
 
 if natural_selection
   m.natural_selection(botlist, (new Writer), game_length)
-
-if variable_length
-  false
 
 if evolution
   false

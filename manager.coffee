@@ -23,7 +23,10 @@ PAYOFF = new g.Payoffs 5, 3, 1, 0
     the round robin tournament
 ###
 
+
 root.round_robin = (botlist, writer, game_length) ->
+  variable_length_type = 'small uniform'
+# options: small uniform, big uniform, exponential
   records = {}
   for bot_one in botlist
     for bot_two in botlist
@@ -31,7 +34,7 @@ root.round_robin = (botlist, writer, game_length) ->
       player_two = new bot_two
       matchup = "#{player_one.name} vs #{player_two.name}"
       records[matchup] = {}
-variablise(game_length)
+      variablise(game_length, type: variable_length_type) if variable_length_type
       tournament = new g.Game game_length, PAYOFF, player_one, player_two
       [[p1, p1score], [p2, p2score]] = tournament.play()
       p1 = "P1-#{p1}"
@@ -45,6 +48,8 @@ variablise(game_length)
 ###
 
 root.natural_selection = (botlist, writer, game_length) ->
+  variable_length_type = 'small uniform'
+# options: small uniform, big uniform, exponential
   ###
       Options.
   ###
@@ -81,7 +86,7 @@ root.natural_selection = (botlist, writer, game_length) ->
     while pool.length >= 2
       player_one = pool.pop()
       player_two = pool.pop()
-variablise(game_length)
+      variablise(game_length, type: variable_length_type) if variable_length_type
       tournament = new g.Game game_length, PAYOFF, player_one, player_two
       records.push tournament.play()
 
@@ -118,7 +123,22 @@ variablise(game_length)
 
 
 
-class vary 
+variablise = (length, typemap) ->
+  mode = typemap?.type ? 'small uniform'
+  switch mode
+    when 'small uniform'
+      ((Math.random() * length) - (length / 2)) / 3
+    when 'big uniform'
+      (Math.random() * length) - (length / 2)
+    when 'exponential'
+      (-1*(Math.log(Math.random())))*10
+    when 'poisson'
+      console.log "unimplemented"
+    when 'cauchy'
+      console.log "unimplemented"
+    else
+      console.log "incorrect specification! assuming small uniform :P"
+
 
 
 
