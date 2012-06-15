@@ -30,11 +30,11 @@ class root.Game
           @gameinfo
 
   maybe_corrupt: (move, factor) =>
-    if (Math.random() > factor) then corrupt[move] else move
+    if (Math.random() > factor) then @corrupt[move] else move
 
   tick: =>
-    [p1m, p2m] = [maybe_corrupt(@player_one.move(@info 1), @message_corruption), maybe_corrupt(@player_two.move(@info 2), @message_corruption)]
-    @history = [maybe_corrupt(p1m, @information_corruption), maybe_corrupt(p2m, @information_corruption)]
+    [p1m, p2m] = [@maybe_corrupt(@player_one.move(@info 1), @message_corruption), @maybe_corrupt(@player_two.move(@info 2), @message_corruption)]
+    @history = [@maybe_corrupt(p1m, @information_corruption), @maybe_corrupt(p2m, @information_corruption)]
     @player_one_results += @payoffs[p1m][p2m]
     @player_two_results += @payoffs[p2m][p1m]
     @turn++

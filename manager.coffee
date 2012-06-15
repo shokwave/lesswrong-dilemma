@@ -76,10 +76,11 @@ root.natural_selection = (botlist, writer, game_length) ->
     for n in [1..numl]
       pool.push new bot
   
+  
   # now iterate!
   while generations > 0
     # shuffle the pool
-    pool.sort( -> 0.5 - Math.random())
+    pool = shuffle(pool)
     
     # run this generation
     records = []
@@ -141,6 +142,14 @@ variablise = (length, typemap) ->
     else
       console.log "incorrect specification! assuming small uniform :P"
       ((Math.random() * length) - (length / 2)) / 3
+
+shuffle = (arr) ->
+  # Fisher Yates Knuth Durstenfeld
+  i = arr.length
+  while --i
+    j = Math.floor(Math.random() * (i+1))
+    [arr[i], arr[j]] = [arr[j], arr[i]]
+  arr
 
 
 
