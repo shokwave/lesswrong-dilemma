@@ -3,18 +3,19 @@ lesswrong-dilemma
 
 TODOS:  
 * Combine all options into a big hash and pass that around instead.  
-* Fisher-Yates instead of ` -> Math.random() - 0.5  
+* Fisher-Yates instead of ` -> Math.random() - 0.5`  
 * Evolution      
 
 An Iterated Prisoner's Dilemma simulator and Tournament manager.    
 
-The payoff strucutre is handled by PAYOFF: an object in manager.coffee    
+The payoff structure is handled by PAYOFF: an object in manager.coffee    
 Other options are in main.coffee:    
-* set `round_robin` to `true` to have each bot play each other bot. Output is written to root directory.  
+* set `round_robin` to `true` to have each bot play each other bot. Output is (badly) written to root directory.  
 * set `natural_selection` to `true` to run a population simulation. The default is a population of 1000, run for 1000 generations. Alter `root.natural_selection`'s generations and population variables to alter. Output is written as a CSV formatted .txt file to root directory.  
-* `variable_length` is not yet implemented.  
+* `variable_length` can take `'small uniform'`, `'big uniform'`, and `'exponential'`.
 * `evolution` is not yet implemented.  
-* `message_corruption` is not yet implemented.  
+* `message_corruption` is a parameter that determines the chance of an action being corrupted.   
+* `information_corruption` is a parameter that determines the chance of information you receive being corrupted without the action changing.
 * set `game_length` to the desired number of rounds.    
 
 Writing your bot

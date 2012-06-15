@@ -31,7 +31,7 @@ class Writer
 
   constructor: ->
     
-    @pen = fs.createWriteStream("ipd-logfile-#{ Math.random().toString()[2..10] }", {'a'})
+    @pen = fs.createWriteStream("ipd-logfile-#{ Math.random().toString()[2..6] }", {'a'})
     @first_write = true
 
   rr_log: (d) =>
