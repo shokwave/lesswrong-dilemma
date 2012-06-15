@@ -75,7 +75,7 @@ root.natural_selection = (botlist, writer, game_length) ->
   for bot in botlist
     for n in [1..numl]
       pool.push new bot
-  
+
   
   # now iterate!
   while generations > 0
@@ -128,11 +128,11 @@ variablise = (length, typemap) ->
   mode = typemap?.type ? 'small uniform'
   switch mode
     when 'small uniform'
-      ((Math.random() * length) - (length / 2)) / 3
+      Math.floor(((Math.random() * length) - (length / 2)) / 3)
     when 'big uniform'
-      (Math.random() * length) - (length / 2)
+      Math.floor((Math.random() * length) - (length / 2))
     when 'exponential'
-      (-1*(Math.log(Math.random())))*10
+      Math.floor((-1*(Math.log(Math.random())))*10)
     when 'poisson'
       console.log "unimplemented"
       length
@@ -141,7 +141,7 @@ variablise = (length, typemap) ->
       length
     else
       console.log "incorrect specification! assuming small uniform :P"
-      ((Math.random() * length) - (length / 2)) / 3
+      Math.floor(((Math.random() * length) - (length / 2)) / 3)
 
 shuffle = (arr) ->
   # Fisher Yates Knuth Durstenfeld

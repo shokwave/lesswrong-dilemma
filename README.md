@@ -3,7 +3,6 @@ lesswrong-dilemma
 
 TODOS:  
 * Combine all options into a big hash and pass that around instead.  
-* Fisher-Yates instead of ` -> Math.random() - 0.5`  
 * Evolution      
 
 An Iterated Prisoner's Dilemma simulator and Tournament manager.    
