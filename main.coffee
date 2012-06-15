@@ -1,4 +1,4 @@
-require('nodetime').profile({stdout: true})
+root = exports ? window
 
 fs = require 'fs'
 b = require './bots'
@@ -20,9 +20,9 @@ evolution = false
 ###
     Options:
 ###
-variable_length = false
+variable_length = true
 message_corruption = false
-game_length = 100
+game_length = 50
 
 ###
     Logging
@@ -50,15 +50,15 @@ class Writer
       for ky, vl of d
         keyz += "#{ky},"
         valz += "#{vl},"
-      keyz += "\n" + valz + "\n"
-      @pen.write keyz
+      blobz = keyz[0..(keyz.length - 2)] + "\n" + valz[0..(valz.length - 2)] + "\n"
+      @pen.write blobz
       @first_write = false
     else
       valz = ""
       for ky, vl of d
         valz += ",#{vl}"
       valz += "\n"
-      @pen.write valz
+      @pen.write valz[1..valz.length]
 
 
 if round_robin
@@ -66,9 +66,6 @@ if round_robin
 
 if natural_selection
   m.natural_selection(botlist, (new Writer), game_length)
-
-if variable_length
-  false
 
 if evolution
   false
