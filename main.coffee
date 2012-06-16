@@ -5,106 +5,64 @@ b = require './bots'
 g = require './game'
 m = require './manager'
 
-###
-    The list of bots that will compete.
-###
-botlist = [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot, b.TitForTatDefectLastN, b.Afterparty]
 
-###
-    set your payoff structure here.
-###
-PAYOFF = new g.Payoffs 5, 3, 1, 0
+opts = 
 
+  botlist: 
+    [b.TitForTat, b.Random, b.GrimTrigger, b.DefectBot, b.CooperateBot, b.TitForTatDefectLastN, b.Afterparty]
+  
+  payoff: 
+    new g.Payoffs 5, 3, 1, 0
 
-###
-    Game type:
-###
-round_robin = false
-natural_selection = true
-evolution = false
+  game_length:
+    100
 
-###
-    Options:
-###
-variable_length = true
-message_corruption_flag = false
-game_length = 50
-generations = 100
-population = 400
-message_corruption = 0.01
-information_corruption = 0.01
+  round_robin: 
+    flag: false
+    do: m.round_robin
 
+  natural_selection: 
+    flag: false
+    generations: 1000
+    population: 400
+    do: m.natural_selection
 
-if round_robin
-  m.round_robin(botlist, (new Writer), game_length, PAYOFF, variablise.uniform)
+  evolution: 
+    flag: false
+    m: 'dunno'
+    # do: m.evolution
 
-if natural_selection
-  m.natural_selection(botlist, (new Writer), game_length, PAYOFF, variablise.uniform, generations, population)
+  variable_length:
+    flag: false
+    methods: 
+      small_uniform: (length) ->
+        Math.floor(((Math.random() * length) - (length / 2)) / 3)
 
-if evolution
-  false
+      big_uniform: (length) ->
+        Math.floor((Math.random() * length) - (length / 2))
 
-if message_corruption
-  false
+      exponential: (length) ->
+        Math.floor((-1*(Math.log(Math.random())))*10)
 
+  message_corruption: 
+    flag: false
+    rate: 0.01
 
+  information_corruption:
+    flag: false
+    rate: 0.01
 
-smll_uniform = (length) ->
-  Math.floor(((Math.random() * length) - (length / 2)) / 3)
+# change small_uniform to big_uniform or exponential.
+opts.variablise = opts.variable_length.methods.small_uniform
 
-bg_uniform = (length) ->
-  Math.floor((Math.random() * length) - (length / 2))
+switch process.argv[2]
+  when 'round robin'
+    opts.round_robin.flag = true
+  when 'natural selection'
+    opts.natural_selection.flag = true
+  when 'evolution'
+    opts.evolution.flag = true
 
-expontl = (length) ->
-  Math.floor((-1*(Math.log(Math.random())))*10)
-
-variablise = 
-  uniform: smll_uniform
-  big_uniform: bg_uniform
-  exponential: expontl
-
-
-
-###
-    Logging
-###
-class Writer
-
-  constructor: ->
-    
-    @pen = fs.createWriteStream("ipd-logfile-#{ Math.random().toString()[2..6] }", {'a'})
-    @first_write = true
-
-  rr_log: (d) =>
-    stri = ""
-    for matchup, blob of d
-      stri += "#{matchup}\n"
-      for player, score of blob
-        stri += "#{player}: #{score}\n"
-    @pen.write stri
-
-
-  ns_log: (d) =>
-    if @first_write
-      keyz = ""
-      valz = ""
-      for ky, vl of d
-        keyz += "#{ky},"
-        valz += "#{vl},"
-      blobz = keyz[0..(keyz.length - 2)] + "\n" + valz[0..(valz.length - 2)] + "\n"
-      @pen.write blobz
-      @first_write = false
-    else
-      valz = ""
-      for ky, vl of d
-        valz += ",#{vl}"
-      valz += "\n"
-      @pen.write valz[1..valz.length]
-
-
-
-
-
-
-
-
+opts.round_robin.do(opts) if opts.round_robin.flag
+opts.natural_selection.do(opts) if opts.natural_selection.flag
+opts.evolution.do(opts) if opts.evolution.flag

@@ -11,39 +11,41 @@ shuffle = (arr) ->
   return arr
 
 
-root.round_robin = (botlist, writer, game_length, payoff, variablise) ->
+root.round_robin = (opts) ->
   records = {}
-  for bot_one in botlist
-    for bot_two in botlist
+  for bot_one in opts.botlist
+    for bot_two in opts.botlist
       player_one = new bot_one
       player_two = new bot_two
       matchup = "#{player_one.name} vs #{player_two.name}"
       records[matchup] = {}
-      tournament = new g.Game variablise(game_length), payoff, player_one, player_two, message_corruption, information_corruption
+      tournament = new g.Game opts.variablise(opts.game_length), opts.payoff, player_one, player_two, opts.message_corruption, opts.information_corruption
       [[p1, p1score], [p2, p2score]] = tournament.play()
       p1 = "P1-#{p1}"
       p2 = "P2-#{p2}"
       records[matchup][p1] = p1score
       records[matchup][p2] = p2score
-  writer.rr_log records
+  return records
 
 
-root.natural_selection = (botlist, writer, game_length, payoff, variablise, generations, population) ->
-  # initialise the lookup dict
+root.natural_selection = (opts) ->
+  # initialise the lookup and results dicts
+  logging_results = []
   lookup = {}
-  for bot in botlist
+  generations = opts.natural_selection.generations
+  for bot in opts.botlist
     lookup[bot.name] = bot
   # initialise the scoring dict
   dict = {}
-  for bot in botlist
+  for bot in opts.botlist
     dict[bot.name] = 0
   # initialise the pool
   pool = []
   # get the number of individuals
-  numl = Math.ceil(population/botlist.length)
+  numl = Math.ceil(opts.natural_selection.population/opts.botlist.length)
   # avert ye eyes! (coerce to even so we can sample safely)
   numl -= numl % 2
-  for bot in botlist
+  for bot in opts.botlist
     for n in [1..numl]
       pool.push new bot
   # now iterate!
@@ -55,7 +57,7 @@ root.natural_selection = (botlist, writer, game_length, payoff, variablise, gene
     while pool.length >= 2
       player_one = pool.pop()
       player_two = pool.pop()
-      tournament = new g.Game variablise(game_length), payoff, player_one, player_two, message_corruption, information_corruption
+      tournament = new g.Game opts.variablise(opts.game_length), opts.payoff, player_one, player_two, opts.message_corruption.rate, opts.information_corruption.rate
       records.push tournament.play()
     # accumulate scores
     for result in records
@@ -65,13 +67,13 @@ root.natural_selection = (botlist, writer, game_length, payoff, variablise, gene
     total = 0
     for name, value of dict
       total += value
-    total /= population
+    total /= opts.natural_selection.population
     for name, value of dict
       evnum = Math.round(value /= total)
       evnum -= evnum % 2
       dict[name] = evnum
     # record results
-    writer.ns_log dict
+    logging_results.push dict
     console.log("pool not emptied!", pool) unless pool.length == 0
     # fill the pool with the new generation
     for name, value of dict
@@ -82,3 +84,5 @@ root.natural_selection = (botlist, writer, game_length, payoff, variablise, gene
     for name, value of dict
       dict[name] = 0
     generations -= 1
+  # finally, return results
+  return logging_results
