@@ -23,7 +23,7 @@ opts =
     do: m.round_robin
 
   natural_selection: 
-    flag: true
+    flag: false
     generations: 600
     population: 700
     do: m.natural_selection
@@ -34,7 +34,7 @@ opts =
     # do: m.evolution
 
   variable_length:
-    flag: true
+    flag: false
     methods: 
       small_uniform: (length) ->
         length + Math.floor(((Math.random() * length) - (length / 2)) / 3)
@@ -46,11 +46,11 @@ opts =
         length + Math.floor((-1*(Math.log(Math.random())))*10)
 
   message_corruption: 
-    flag: true
+    flag: false
     rate: 0.02
 
   information_corruption:
-    flag: true
+    flag: false
     rate: 0.03
 
   variablise: (x) => x
