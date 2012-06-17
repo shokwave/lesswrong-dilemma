@@ -3,7 +3,8 @@ root = exports ? window
 g = require './game'
 
 shuffle = (arr) ->
-  # Fisher Yates Knuth Durstenfeld, by your powers combined
+  # Fisher Yates Knuth Durstenfeld, by your powers combined...
+  # I AM A PROPERLY SHUFFLED ARRAY!
   i = arr.length
   while --i
     j = Math.floor(Math.random() * (i+1))
