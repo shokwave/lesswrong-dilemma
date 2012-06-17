@@ -19,12 +19,13 @@ opts =
 
   round_robin: 
     flag: false
+    play_self: true
     do: m.round_robin
 
   natural_selection: 
-    flag: false
-    generations: 1000
-    population: 400
+    flag: true
+    generations: 600
+    population: 700
     do: m.natural_selection
 
   evolution: 
@@ -33,27 +34,30 @@ opts =
     # do: m.evolution
 
   variable_length:
-    flag: false
+    flag: true
     methods: 
       small_uniform: (length) ->
-        Math.floor(((Math.random() * length) - (length / 2)) / 3)
+        length + Math.floor(((Math.random() * length) - (length / 2)) / 3)
 
       big_uniform: (length) ->
-        Math.floor((Math.random() * length) - (length / 2))
+        length + Math.floor((Math.random() * length) - (length / 2))
 
       exponential: (length) ->
-        Math.floor((-1*(Math.log(Math.random())))*10)
+        length + Math.floor((-1*(Math.log(Math.random())))*10)
 
   message_corruption: 
-    flag: false
-    rate: 0.01
+    flag: true
+    rate: 0.02
 
   information_corruption:
-    flag: false
-    rate: 0.01
+    flag: true
+    rate: 0.03
+
+  variablise: (x) => x
 
 # change small_uniform to big_uniform or exponential.
-opts.variablise = opts.variable_length.methods.small_uniform
+if opts.variable_length.flag
+  opts.variablise = opts.variable_length.methods.small_uniform
 
 switch process.argv[2]
   when 'round robin'
@@ -63,6 +67,8 @@ switch process.argv[2]
   when 'evolution'
     opts.evolution.flag = true
 
-opts.round_robin.do(opts) if opts.round_robin.flag
-opts.natural_selection.do(opts) if opts.natural_selection.flag
+# opts.round_robin.do(opts) if opts.round_robin.flag
+console.log(opts.round_robin.do(opts)) if opts.round_robin.flag
+
+console.log(opts.natural_selection.do(opts)) if opts.natural_selection.flag
 opts.evolution.do(opts) if opts.evolution.flag

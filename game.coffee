@@ -3,7 +3,7 @@ root = exports ? window
 
 class root.Game
 
-  constructor: (@length, @payoffs, @player_one, @player_two, @message_corruption, @information_corruption) ->
+  constructor: (@length, @payoffs, @player_one, @player_two, @message_corruption, @information_corruption, @player_length) ->
     @player_one_results = 0
     @player_two_results = 0
     @history = []
@@ -13,11 +13,11 @@ class root.Game
 
   info: (player) =>
     if @turn == 1
-      @gameinfo = new root.Info [], @turn, @length, []
+      @gameinfo = new root.Info [], @turn, @player_length, []
     else
       @gameinfo.turn = @turn
       @gameinfo.last_turn = @history
-      @gameinfo.game_length = @length
+      @gameinfo.game_length = @player_length
       @gameinfo.current_scores = [@player_one_results, @player_two_results]
       switch player
         when 1
@@ -28,7 +28,7 @@ class root.Game
           return @gameinfo
 
   maybe_corrupt: (move, factor) =>
-    if (Math.random() > factor) then @corrupt[move] else move
+    if (Math.random() < factor) then @corrupt[move] else move
 
   tick: =>
     [p1m, p2m] = [@maybe_corrupt(@player_one.move(@info 1), @message_corruption), @maybe_corrupt(@player_two.move(@info 2), @message_corruption)]
